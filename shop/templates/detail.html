@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form  method="POST" action="{% url item.name %}">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ item.name }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for purchase in item.purchase_set.all %}
+        <label for="purchase{{ forloop.counter }}">{{ purchase.name }}</label><br>
+    {% endfor %}
+</fieldset>
+</form>
+
+{% endblock content %}
